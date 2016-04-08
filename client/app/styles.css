@@ -1,0 +1,42 @@
+.command {
+    margin:auto;
+    margin-top:30px;
+    width:20vw;
+
+}
+
+.command input {
+    font-size:30px;
+}
+
+.output {
+    margin:auto;
+    width:20vw;
+    margin-top:10px;
+    font-family: Arial, sans-serif;
+    min-height:40vh;
+    border: 1px dotted #ffc520;
+}
+
+.title {
+    width:20vw;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size:26px;
+    margin:auto;
+    margin-top:20vh;
+}
+
+.editor {
+    margin:auto;
+    width:40vw;
+    margin-top:10px;
+    min-height:40vh;
+}
+
+.editor textarea {
+    font-family: Arial, sans-serif;
+    width:40vw;
+    resize: none;
+    background-color: ghostwhite;
+}
