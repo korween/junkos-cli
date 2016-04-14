@@ -1,3 +1,12 @@
+@font-face {
+    font-family: Inconsolata;
+    src: url("font/Inconsolata.otf") format("opentype");
+}
+
+body {
+    font-family: Inconsolata;
+}
+
 .command {
     margin:auto;
     margin-top:30px;
@@ -7,13 +16,14 @@
 
 .command input {
     font-size:30px;
+    width:20vw;
+    font-family: Inconsolata;
 }
 
 .output {
     margin:auto;
     width:20vw;
     margin-top:10px;
-    font-family: Arial, sans-serif;
     min-height:40vh;
     border: 1px dotted #ffc520;
 }
@@ -21,7 +31,6 @@
 .title {
     width:20vw;
     text-align: center;
-    font-family: Arial, sans-serif;
     font-size:26px;
     margin:auto;
     margin-top:20vh;
@@ -35,8 +44,8 @@
 }
 
 .editor textarea {
-    font-family: Arial, sans-serif;
     width:40vw;
+    font-size: 16px;
     resize: none;
     background-color: ghostwhite;
 }

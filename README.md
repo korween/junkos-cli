@@ -34,10 +34,14 @@ As this is a minimalistic and Junk CLI, you will have to make your own help modu
 Here is a description of the commands provided:
 
 * ls -> lists all the commands
-* touch <command> -> creates a new command
-* edit <command> -> switches to edit mode for the command. Once you are done, type "save" or press Ctrl-S to save
+* template <command> -> creates a new command with minimal code to work.
+* edit <command> -> edits the commands, or creates it if it doesn't exist. Once you are done, type "save" or press Ctrl-S to save
+* rm <command1> <command2> [..] -> removes the commands (Warning: you can lose the base commands this way!)
 * save -> In editor mode, saves the file
 * reload -> checks and reloads all the commands into the CLI. Required to update the environment
 
 From there, you are on your own. You can start by programming a new command, or by editing existing ones. Good luck!
 
+## LICENSE:
+
+This software uses Inconsolata font, provided under SIL OFL 1.1. Details can be found [here](http://scripts.sil.org/OFL).
