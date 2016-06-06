@@ -1,0 +1,3 @@
+node_modules
+client/socket.io.js
+client/jquery.min.js
