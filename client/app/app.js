@@ -26,21 +26,13 @@ $( document ).ready(function() {
 
     transport.bind('display', function(c) {
         if (c && c.body) {
-            var out = $('#logger')
+            var color = c.color || '#000000';
+            var out = $('#logger').add('span').css({"color":color})
             if (c.empty)
                 out.empty()
-            out.append(c.body+'\n');
+            out.append(c.body+'<br>');
         }
-    })
-
-    transport.bind('error', function(c) {
-        if (c && c.body) {
-            var out = $('#logger').css({"color":"#FF2301"})
-            if (c.empty)
-                out.empty()
-            out.append(c.body+'\n');
-        }
-    })
+    });
 
     transport.bind('outputEnter', function(c){
         if(c) {
