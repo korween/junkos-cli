@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-var bootText="module.exports=function(input) {\n// Insert code here \n}"
+var bootText="module.exports=function(input, s) {\n// Insert code here \n}"
 
 module.exports=function(input) {
 	if(!input)
@@ -9,7 +9,7 @@ module.exports=function(input) {
  	try {
 	        fs.readFileSync('./code/'+args[0]+'.js','utf8');
 		return;
-	} 
+	}
 	catch(err) {
 		if (args) {
         		var res = fs.writeFileSync("./code/" + args[0] + '.js', bootText);
