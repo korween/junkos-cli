@@ -1,6 +1,11 @@
 require('./mod/require-uncache')(require);
 require('./mod/copy-modules')();
 var express = require('express');
+var redis = {
+    ready: false,
+    client: require('redis').createClient(),
+    api : null
+}
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -13,6 +18,15 @@ var scope = {
     print : require('./mod/print').print,
     error : require('./mod/print').error
 };
+
+redis.client.on('connect', function() {
+    redis.ready = true;
+    redis.api = require('./mod/redis')(redis);
+    scope.store = redis.api.setKey;
+    scope.fetch = redis.api.getKey;
+});
+
+
 
 function init(uncache) {
     if(uncache)
