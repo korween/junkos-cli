@@ -4,9 +4,14 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var socket;
+var print;
 var fs = require('fs');
 var codeChunks={}
 var commands = [];
+var scope = {
+    print : require('./mod/print').print
+};
 
 function init(uncache) {
     if(uncache)
@@ -17,7 +22,7 @@ function init(uncache) {
     for (var chunk in codeChunks) {
         i++;
         try {
-            codeChunks[chunk]();
+            codeChunks[chunk](null, scope);
         }
         catch(err) {
             delete codeChunks[chunk];
@@ -41,7 +46,8 @@ for (var c in codeChunks) {
 
 app.use(express.static('client'));
 
-io.on('connection', function(socket){
+io.on('connection', function(s){
+    socket = s;
     socket.on('disconnect', function(){
     });
     socket.on('inputEnter', function(string){
@@ -52,6 +58,7 @@ io.on('connection', function(socket){
         var res = tabFind(string, commands)
         io.emit('outputTab', res);
     });
+    require('./mod/print').bind(socket, io);
 });
 
 http.listen(3000, function(){
@@ -66,7 +73,7 @@ function runCommand(input) {
     input['_command']=c;
     input['_args']=cmd;
     if(commands.indexOf(c)>-1) {
-        return codeChunks[c](input);
+        return codeChunks[c](input, scope);
     }
     else if(c=="reload") {
         res = init(true);
@@ -87,4 +94,3 @@ function tabFind(key, array) {
     }
     return results;
 }
-
