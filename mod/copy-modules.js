@@ -4,11 +4,11 @@ module.exports = function() {
     var files= {
         "socket.io.js": "./node_modules/socket.io-client/socket.io.js",
         "jquery.min.js": "./node_modules/jquery/dist/jquery.min.js"
-    }
+    };
 
     try {
         for (var f in files) {
-            fs.writeFileSync('./client/'+f, fs.readFileSync(files[f]));
+            fs.writeFileSync('./client/vendors/'+f, fs.readFileSync(files[f]));
         }
     }
     catch(err) {
@@ -16,6 +16,3 @@ module.exports = function() {
         process.exit(1);
     }
 }
-
-
-
