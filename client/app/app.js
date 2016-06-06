@@ -24,6 +24,15 @@ $( document ).ready(function() {
             window.commands=c;
     });
 
+    transport.bind('display', function(c) {
+        if (c && c.body) {
+            var out = $('#output')
+            if (c.empty)
+                out.empty()
+            out.append(c.body);
+        }
+    })
+
     transport.bind('outputEnter', function(c){
         if(c) {
             var res = "";
