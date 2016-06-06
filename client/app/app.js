@@ -25,12 +25,16 @@ $( document ).ready(function() {
     });
 
     transport.bind('display', function(c) {
-        if (c && c.body) {
+
+        if (c) {
             var color = c.color || '#000000';
-            var out = $('#logger').add('span').css({"color":color})
             if (c.empty)
-                out.empty()
-            out.append(c.body+'<br>');
+                $('#logger').empty();
+            if(c.body) {
+                $('#logger').append("<span></span>")
+                var out = $('#logger > span').last().css({"color":color});;
+                out.append(c.body+'<br>');
+            }
         }
     });
 

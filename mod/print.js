@@ -6,11 +6,12 @@ module.exports = {
     bind : bind
 };
 
-function print(input, empty){
+function print(input, empty, color){
     if(socket.connected){
         io.emit('display',{
             body : input.toString(),
-            empty : !!empty
+            empty : !!empty,
+            color: color || null
         });
     }
 }
