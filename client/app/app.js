@@ -29,7 +29,16 @@ $( document ).ready(function() {
             var out = $('#logger')
             if (c.empty)
                 out.empty()
-            out.append(c.body);
+            out.append(c.body+'\n');
+        }
+    })
+
+    transport.bind('error', function(c) {
+        if (c && c.body) {
+            var out = $('#logger').css({"color":"#FF2301"})
+            if (c.empty)
+                out.empty()
+            out.append(c.body+'\n');
         }
     })
 
