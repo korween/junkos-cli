@@ -64,7 +64,7 @@ function Input() {
         var content = editor.val();
         var newContent;
         // Save
-        if(e.which==83 && e.ctrlKey) {
+        if(e.which==83 && e.ctrlKey) { // CTRl + S
             action.cmd('save');
             e.preventDefault()
         }

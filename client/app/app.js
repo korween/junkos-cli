@@ -3,20 +3,20 @@ var transport = new Transport();
 
 $( document ).ready(function() {
     var input = new Input();
-    var console = $("#console");
+    var konsol = $("#console");
     var editor = $("#edit");
     $("#editor").hide();
-    console.attr('disabled',true);
-    console.attr('placeholder','No connection');
+    konsol.attr('disabled',true);
+    konsol.attr('placeholder','No connection');
 
     transport.bind('disconnect',function() {
-        console.attr('disabled',true);
-        console.attr('placeholder','No connection');
+        konsol.attr('disabled',true);
+        konsol.attr('placeholder','No connection');
     });
 
     transport.bind('connect',function() {
-        console.attr('disabled',false);
-        console.attr('placeholder','type something');
+        konsol.attr('disabled',false);
+        konsol.attr('placeholder','type something');
     });
 
     transport.bind('outputTab', function(c){
@@ -26,7 +26,7 @@ $( document ).ready(function() {
 
     transport.bind('display', function(c) {
         if (c && c.body) {
-            var out = $('#output')
+            var out = $('#logger')
             if (c.empty)
                 out.empty()
             out.append(c.body);
@@ -60,8 +60,8 @@ $( document ).ready(function() {
         }
     });
 
-    console.on("keydown",function(e) {
-        input.console.handleKey(e,console);
+    konsol.on("keydown",function(e) {
+        input.console.handleKey(e,konsol);
     });
 
     editor.on("keydown",function(e) {
