@@ -10,7 +10,8 @@ var fs = require('fs');
 var codeChunks={}
 var commands = [];
 var scope = {
-    print : require('./mod/print').print
+    print : require('./mod/print').print,
+    error : require('./mod/print').error
 };
 
 function init(uncache) {

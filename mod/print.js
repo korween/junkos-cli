@@ -17,9 +17,10 @@ function print(input, empty){
 
 function error(input, empty){
     if(socket.connected){
-        io.emit('error',{
+        io.emit('display',{
             body : input.toString(),
-            empty : !!empty
+            empty : !!empty,
+            color : '#FF2301'
         });
     }
 }
