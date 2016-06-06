@@ -1,10 +1,29 @@
 require('./mod/require-uncache')(require);
 require('./mod/copy-modules')();
 var express = require('express');
-var redis = {
-    ready: false,
-    client: require('redis').createClient(),
-    api : null
+var redis = {};
+try {
+    redis = {
+        ready: false,
+        client: require('redis').createClient({
+            retry_strategy : function(options){
+                if (options.error.code === 'ECONNREFUSED') {
+                    // Do not retry
+                    return 'ECONNREFUSED';
+                }
+            }
+        }),
+        api : null
+    };
+    redis.client.on('connect', function() {
+        redis.ready = true;
+        redis.api = require('./mod/redis')(redis);
+        scope.store = redis.api.setKey;
+        scope.fetch = redis.api.getKey;
+    });
+
+} catch(e){
+    console.error(e);
 }
 var app = express();
 var http = require('http').Server(app);
@@ -19,12 +38,7 @@ var scope = {
     error : require('./mod/print').error
 };
 
-redis.client.on('connect', function() {
-    redis.ready = true;
-    redis.api = require('./mod/redis')(redis);
-    scope.store = redis.api.setKey;
-    scope.fetch = redis.api.getKey;
-});
+
 
 
 
@@ -88,6 +102,7 @@ if (random || noCrash.length){
     });
 } else {
     console.error('Junk OS CLI has crashed !');
+    process.exit(1);
 }
 
 function runCommand(input) {
