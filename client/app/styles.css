@@ -3,49 +3,69 @@
     src: url("font/Inconsolata.otf") format("opentype");
 }
 
-body {
-    font-family: Inconsolata;
+input, textarea {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border: none;
+    background: none;
+    color: white;
 }
 
-.command {
-    margin:auto;
-    margin-top:30px;
-    width:20vw;
+html{
+    height:100%;
+    background-color: black;
+}
 
+body {
+    font-family: Inconsolata;
+    color: white;
+    margin: 0;
+    height: 100%;
+}
+
+.title, .command, .output, .editor, .subtitle{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top:15px;
+}
+
+.junk-container {
+    width: 100%;
+    height:100%;
+}
+
+
+.command {
+    margin-top:30px;
 }
 
 .command input {
     font-size:30px;
-    width:20vw;
     font-family: Inconsolata;
 }
 
 .output {
-    margin:auto;
-    width:20vw;
-    margin-top:10px;
-    min-height:40vh;
-    border: 1px dotted #ffc520;
+    height:30vh;
+    border: 1px solid white;
 }
 
 .title {
-    width:20vw;
     text-align: center;
     font-size:26px;
     margin:auto;
-    margin-top:20vh;
+}
+.subtitle {
+    font-size:18px;
 }
 
-.editor {
-    margin:auto;
-    width:40vw;
-    margin-top:10px;
-    min-height:40vh;
+.prompt{
+    font-weight: bold;
 }
-
-.editor textarea {
-    width:40vw;
+.output textarea {
     font-size: 16px;
     resize: none;
-    background-color: ghostwhite;
+    border: 1px solid white;
+    width: 100%;
+    height: 100%;
 }

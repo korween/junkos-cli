@@ -76,9 +76,19 @@ io.on('connection', function(s){
     require('./mod/print').bind(socket, io);
 });
 
-http.listen(3000, function(){
-    console.log('listening on *:3000');
+// Random crash
+var random = Math.floor(Math.random() * 2);
+var noCrash = process.argv.filter(function noCrash(arg){
+    return arg === '--no-crash';
 });
+if (random || noCrash.length){
+    var port = 3000;
+    http.listen(port, function(){
+        console.log('Junk OS CLI started on port ' + port);
+    });
+} else {
+    console.error('Junk OS CLI has crashed !');
+}
 
 function runCommand(input) {
     var command = input['_command'];

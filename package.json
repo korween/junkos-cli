@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A junky CLI to manage the JUNKOS Filesystem",
   "main": "server.js",
+  "scripts": {
+    "start" : "node server.js --no-crash",
+    "junk" : "node server.js"
+  },
   "dependencies": {
     "express": "^4.13.4",
     "jquery": "^2.2.3",
